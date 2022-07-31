@@ -6,6 +6,7 @@ const {
   notFound,
   errorHandler,
 } = require("./middlewares/errorHandlerMiddleware");
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
@@ -14,6 +15,9 @@ connectDB();
 
 // middleware
 app.use([morgan("dev"), express.json()]);
+
+// routes
+app.use("/api/products/v1", productRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
